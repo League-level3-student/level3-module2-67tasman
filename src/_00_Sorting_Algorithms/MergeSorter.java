@@ -13,6 +13,7 @@ public class MergeSorter extends Sorter {
 	@Override
 	void sort(int[] array, SortingVisualizer display) {
 		// 20. call the mergeSort method with 0 and the length of the array minus one
+		mergeSort(array, 0, array.length-1, display);
 	}
 
 	private void mergeSort(int[] array, int low, int high, SortingVisualizer display) {
@@ -26,17 +27,16 @@ public class MergeSorter extends Sorter {
 			int middle = (low+high)/2;
             
             //4. call the mergeSort method with low and middle
-			mergeSort(null, low, middle, null);
+			mergeSort(array, low, middle, display);
            
             //5. call the mergeSort method with middle + 1 and high
-			mergeSort(null, middle+1, high, null);
+			mergeSort(array, middle+1, high, display);
             
             //6. copy the elements from the array into the temporary array,
             //   but only the elements from low to high inclusive
 			for(int i= low ; i < high+1 ; i++) {
-				int j = 0;
-				array2[j] = array[i];
-				j=j++;
+			
+				array2[i] = array[i];
 			}
 			
             //7. create three integers called i, j, and k and
@@ -58,7 +58,7 @@ public class MergeSorter extends Sorter {
 					array[k] = array2[i];
                     
                     //11. increase i by 1
-					i=i++;
+					i++;
 				}
                   
                 //13. else
@@ -66,20 +66,21 @@ public class MergeSorter extends Sorter {
                     //14. set array at k equal to temp array at j
                    array[k]=array2[j];
                     //15. increase j by 1
-                   j=j++;
-                 
+                   j++;
+				}
                 //16. increase k by 1
-                   k=k++;
+			    k++;
                 
-			}
+			
+				display.updateDisplay();
 			}
             //17. make a while loop that runs while i is less than or equal to middle
             while(i<=middle) {
             	//18. set array at k equal to temp array at i
                 array[k]=array2[i];
                 //19. increase k and i by 1
-                k=k++;
-                i=i++;
+                k++;
+                i++;
             }
 			
                
