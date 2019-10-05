@@ -20,6 +20,25 @@ public class BogoSorter extends Sorter {
 	//1. Complete the sort method using the Bogo sort algorithm. 
 	@Override
 	void sort(int[] array, SortingVisualizer display) {
-
+		boolean b = false;
+		while(b == false) {
+			b=true;
+		for (int i = 0; i < array.length - 1; i++) {
+			if(array[i+1]<=array[i]) {
+				b = false;
+			}
+		}
+		if(b==true) {
+			return;
+		}
+			Random rand = new Random();
+			int n = rand.nextInt(array.length);
+			Random rand2 = new Random();
+			int n2 = rand2.nextInt(array.length);
+			int h = array[n];
+			array[n] = array[n2];
+			array[n2] = h;
+			display.updateDisplay();
+		}
 	}
 }
